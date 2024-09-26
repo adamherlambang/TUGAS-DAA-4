@@ -1,0 +1,17 @@
+SELECT * FROM keseimbangan_maya.users;
+
+INSERT INTO users (name, age, job, location, hobby)
+VALUES ('Maya', 37, 'Direktur Pemasaran', 'Jakarta Pusat', 'Lari maraton, seni, piano');
+
+
+
+--script dibwah ini jika ingin mengupdate atau delete
+
+-- Mengupdate data pada tabel users
+UPDATE users
+SET name = 'Maya Agustina', age = 38, job = 'VP of Marketing'
+WHERE user_id = 1;
+
+-- Menghapus data di tabel users berdasarkan user_id
+DELETE FROM users
+WHERE user_id ;
