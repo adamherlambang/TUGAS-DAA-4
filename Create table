@@ -1,0 +1,50 @@
+CREATE DATABASE keseimbangan_maya;
+USE keseimbangan_maya;
+
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    job VARCHAR(100),
+    location VARCHAR(100),
+    hobby VARCHAR(255)
+);
+
+
+CREATE TABLE health_preferences (
+    preference_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    child_name VARCHAR(100),
+    nutrition_requirements VARCHAR(255),
+    exercise_goal VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE activities (
+    activity_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    activity_name VARCHAR(255),
+    activity_type ENUM('karier', 'keluarga', 'kesehatan'),
+    duration INT,  -- dalam menit
+    priority TINYINT,  -- Skala prioritas dari 1-5
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE family_preferences (
+    preference_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    family_activity VARCHAR(255),
+    preferred_time VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE VIEW maya_summary AS
+SELECT u.name, a.activity_name, a.activity_type, a.duration, a.priority, 
+       h.child_name, h.nutrition_requirements, h.exercise_goal, 
+       f.family_activity, f.preferred_time
+FROM users u
+JOIN activities a ON u.user_id = a.user_id
+JOIN health_preferences h ON u.user_id = h.user_id
+JOIN family_preferences f ON u.user_id = f.user_id
+WHERE u.user_id = 1;
