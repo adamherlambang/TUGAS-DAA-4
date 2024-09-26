@@ -1,0 +1,16 @@
+SELECT * FROM keseimbangan_maya.family_preferences;
+
+INSERT INTO family_preferences (user_id, family_activity, preferred_time)
+VALUES (1, 'Makan malam bersama', 'Setiap hari pukul 19:00');
+
+--script dibawah ini jika ingin update atau delete
+
+-- Mengupdate data pada tabel family_preferences
+
+UPDATE family_preferences
+SET family_activity = 'Bermain bersama di taman', preferred_time = 'Sore'
+WHERE preference_id = 1;
+
+-- Menghapus data di tabel family_preferences berdasarkan preference_id
+DELETE FROM family_preferences
+WHERE preference_id = 1;
