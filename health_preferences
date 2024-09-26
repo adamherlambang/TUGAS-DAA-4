@@ -1,0 +1,16 @@
+SELECT * FROM keseimbangan_maya.health_preferences;
+
+INSERT INTO health_preferences (user_id, child_name, nutrition_requirements, exercise_goal)
+VALUES (1, 'Lily', 'Sayuran dan buah-buahan', 'Lari 3 kali seminggu'),
+ (1, 'Leo', 'Sayuran dan buah-buahan', 'Lari 4 kali seminggu');
+
+
+--script dibawha ini jika ingin update atau delete
+
+UPDATE health_preferences
+SET nutrition_requirements = 'Sayuran organik dan buah segar',
+    exercise_goal = 'Lari 5 kali seminggu'
+WHERE preference_id = 1;
+
+DELETE FROM health_preferences
+WHERE preference_id = 1;
